@@ -18,13 +18,9 @@ def add_text_func(im,t,fill_color):
     d.text((2, 2), t, font=myFont, fill=fill_color)
     return im
 
-@click.command()
-@click.argument("files")
-@click.option("--aspect",default=9/16)
-@click.option("--size",default=128)
-@click.option("--texts",default=None)
-@click.option("--text-color",default="yellow")
-@click.option("--output-file",default=None)
+
+
+
 def make_grid(files, output_file = None, aspect = 9/16, size = 128, texts = None, text_color = "yellow"):
     N = len(files)
     nrows = ceil(sqrt(N/aspect))
@@ -81,8 +77,17 @@ def test():
     im = make_grid(files,texts="index")
     im.save("grid.jpg")
 
+@click.command()
+@click.argument("files")
+@click.option("--aspect",default=9/16)
+@click.option("--size",default=128)
+@click.option("--texts",default=None)
+@click.option("--text-color",default="yellow")
+@click.option("--output-file",default=None)
+def make_grid_cli(*args,**kwargs):
+    make_grid(*args,**kwargs)
 
 
 if __name__=="__main__":
-    make_grid()
+    make_grid_cli()
     
